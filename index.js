@@ -3,11 +3,12 @@ const multer = require("multer"); // Import multer
 const cors = require("cors"); // Import cors
 const path = require("path"); // Import path
 const fs = require("fs"); // Import fs
+require("dotenv").config()
 
 const https = require('https');
 
 const app = express(); // Create an instance of express
-const PORT = process.env.PORT || 3001; // Set port
+const PORT = process.env.APPORT || 3020; // Set port
 
 // Enable CORS for all origins
 app.use(cors());
@@ -46,10 +47,10 @@ app.get("/", (req, res) => {
   res.send("Documents"); // Response for the root URL
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// // Start the server
+// app.listen(PORT, () => {
+//   console.log("app is listening to port" + " " + PORT);
+// });
 
 
 
@@ -58,7 +59,7 @@ const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/srv547457.hstgr.cloud/privkey.pem')
 };
 
-https.createServer(options, app).listen(process.env.APPPORT || '3001', () => {
+https.createServer(options, app).listen(process.env.APPPORT || '3020', () => {
   console.log('app is listening to port' + process.env.APPPORT);
 });
 
